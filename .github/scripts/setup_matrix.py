@@ -39,7 +39,7 @@ def main():
             with open(config_file, 'r') as config:
                 data = yaml.safe_load(config)
                 # Check if group is present
-                if not setup_group in data:
+                if setup_group not in data:
                     with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as gitsum:
                         gitsum_header_msg(gitsum)
                         gitsum_err_msg(
@@ -64,7 +64,7 @@ def main():
             with open(config_file, 'r') as config:
                 data = yaml.safe_load(config)
                 # Check if group is present
-                if not setup_group in data:
+                if setup_group not in data:
                     raise Exception(
                         f"The given group '{setup_group}' doesn't exist!"
                     )
@@ -81,7 +81,7 @@ def err_msg(err):
 
 
 def gitsum_header_msg(env_var):
-    print(f'# Setup Matrix:', file=env_var)
+    print('# Setup Matrix:', file=env_var)
 
 
 def gitsum_err_msg(err, env_var):
